@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Плейлист | GameSoundtracks</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<header>
+		<div class="container header-container">
+			<div class="logo">
+				<a href="index.html">🎮 GameSoundtracks</a>
+			</div>
+			<nav>
+				<ul class="nav-menu">
+					<li><a href="index.html">Главная</a></li>
+					<li><a href="top10.html">Топ-10</a></li>
+					<li><a href="soundtrack-skyrim.html">Пример: Skyrim</a></li>
+					<li><a href="composers.html">Композиторы</a></li>
+					<li><a href="playlist.html" class="active">Плейлист</a></li>
+					<li><a href="about.html">О проекте</a></li>
+				</ul>
+				<button class="mobile-menu-toggle" aria-label="Меню">☰</button>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<div class="container">
+			<h1>🎧 Плейлист лучших треков</h1>
+
+			<!-- Аудиоплеер -->
+			<div class="player-container">
+				<div class="now-playing">
+					<span id="current-track-label">Выберите трек</span>
+				</div>
+				<audio id="audio-player" controls>
+					Ваш браузер не поддерживает аудио.
+				</audio>
+			</div>
+
+			<!-- Список треков (заполняется через JS) -->
+			<div id="track-list" class="track-list"></div>
+
+			<button id="clear-favorites" class="btn secondary">Очистить избранное</button>
+			<p class="note">* Для работы плеера добавьте аудиофайлы в папку <code>/audio</code>. В учебных целях используйте короткие фрагменты.</p>
+		</div>
+	</main>
+
+	<footer>
+		<div class="container">
+			<p>© 2026 GameSoundtracks. Учебный проект. Родин Илья МЕН-152201.</p>
+		</div>
+	</footer>
+
+	<script src="js/script.js"></script>
+</body>
+</html>
