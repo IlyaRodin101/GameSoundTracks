@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>О проекте | GameSoundtracks</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<header>
+		<div class="container header-container">
+			<div class="logo">
+				<a href="index.html">🎮 GameSoundtracks</a>
+			</div>
+			<nav>
+				<ul class="nav-menu">
+					<li><a href="index.html">Главная</a></li>
+					<li><a href="top10.html">Топ-10</a></li>
+					<li><a href="soundtrack-skyrim.html">Пример: Skyrim</a></li>
+					<li><a href="composers.html">Композиторы</a></li>
+					<li><a href="playlist.html">Плейлист</a></li>
+					<li><a href="about.html" class="active">О проекте</a></li>
+				</ul>
+				<button class="mobile-menu-toggle" aria-label="Меню">☰</button>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<div class="container">
+			<section class="about">
+				<h1>О проекте</h1>
+				<p>Добро пожаловать на GameSoundtracks — учебный сайт, созданный в рамках проектного практикума за первый курс.</p>
+
+				<h2>Цель проекта</h2>
+				<p>Продемонстрировать навыки создания многостраничного статического сайта с использованием HTML, CSS и JavaScript. Тема выбрана из любви к видеоиграм и их потрясающей музыке.</p>
+
+				<h2>Использованные технологии</h2>
+				<ul class="simple-list">
+					<li>HTML5 — семантическая вёрстка</li>
+					<li>CSS3 — Flexbox, Grid, адаптивный дизайн</li>
+					<li>JavaScript — интерактивное меню, аудиоплеер, локальное хранилище</li>
+				</ul>
+
+				<h2>Источники</h2>
+				<p>Изображения и аудиофрагменты используются исключительно в образовательных целях. Права на музыку и обложки принадлежат их законным владельцам.</p>
+
+				<h2>Автор</h2>
+				<p>Студент первого курса Родин Илья, группа МЕН-152201.</p>
+			</section>
+		</div>
+	</main>
+
+	<footer>
+		<div class="container">
+			<p>© 2026 GameSoundtracks. Учебный проект. Родин Илья МЕН-152201.</p>
+		</div>
+	</footer>
+
+	<script src="js/script.js"></script>
+</body>
+</html>
