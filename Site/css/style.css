@@ -1,4 +1,4 @@
-/* ===== ПОДКЛЮЧЕНИЕ ШРИФТА (опционально) ===== */
+﻿/* ===== ПОДКЛЮЧЕНИЕ ШРИФТА (опционально) ===== */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
 /* ===== ОБНУЛЕНИЕ И БАЗОВЫЕ СТИЛИ ===== */
@@ -756,4 +756,97 @@ footer {
 		width: 100%;
 		justify-content: center;
 	}
+}
+.inline-player {
+	width: 100%;
+	max-width: 350px;
+	height: 36px;
+	margin-top: 12px;
+	border-radius: 20px;
+	background: rgba(255, 255, 255, 0.05);
+	border: 1px solid rgba(255, 110, 199, 0.3);
+}
+
+/* Для мобильных */
+@media (max-width: 768px) {
+	.inline-player {
+		max-width: 100%;
+	}
+}
+/* ===== АВАТАРКИ "ПОНРАВИЛОСЬ" ВНУТРИ ТРЕКОВ ===== */
+.track-details {
+	position: relative; /* чтобы аватарки могли позиционироваться аккуратно */
+}
+
+.track-likes {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin-top: 8px;
+}
+
+	.track-likes img {
+		width: 28px;
+		height: 28px;
+		object-fit: cover;
+		border-radius: 50%;
+		border: 2px solid #ff6ec7;
+		box-shadow: 0 0 8px rgba(255, 110, 199, 0.6);
+		transition: transform 0.2s, box-shadow 0.2s;
+	}
+
+		.track-likes img:hover {
+			transform: scale(1.2);
+			box-shadow: 0 0 15px rgba(255, 110, 199, 0.9);
+		}
+/* Аватарки в списке команды */
+.team-list {
+	list-style: none;
+	margin: 1.5rem 0 2rem;
+}
+
+	.team-list li {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		background: rgba(255, 255, 255, 0.03);
+		margin-bottom: 0.8rem;
+		padding: 0.8rem 1.5rem;
+		border-radius: 40px;
+		border-left: 4px solid #ff6ec7;
+		font-size: 1.1rem;
+	}
+
+.team-avatar {
+	width: 44px;
+	height: 44px;
+	object-fit: cover;
+	border-radius: 50%;
+	border: 2px solid #ff6ec7;
+	box-shadow: 0 0 10px rgba(255, 110, 199, 0.5);
+	transition: transform 0.2s, box-shadow 0.2s;
+}
+
+	.team-avatar:hover {
+		transform: scale(1.1);
+		box-shadow: 0 0 20px rgba(255, 110, 199, 0.8);
+	}
+
+.team-info {
+	color: #e0d6ff;
+	line-height: 1.5;
+}
+/* Лейбл "Понравилось:" и аватарки в одну строку */
+.likes-label {
+	font-size: 0.95rem;
+	color: #ffb86b;
+	margin-right: 6px;
+	vertical-align: middle; /* чтобы текст выровнялся по центру аватарок */
+}
+
+.track-likes {
+	display: inline-flex; /* вместо flex – теперь контейнер строчный */
+	align-items: center;
+	gap: 6px;
+	vertical-align: middle;
 }
