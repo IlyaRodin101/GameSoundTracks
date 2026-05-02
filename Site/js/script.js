@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+﻿document.addEventListener('DOMContentLoaded', function() {
     // ----- МОБИЛЬНОЕ МЕНЮ -----
     const toggleBtn = document.querySelector('.mobile-menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
@@ -18,16 +18,17 @@ document.addEventListener('DOMContentLoaded', function() {
     function initPlaylist() {
         // Данные треков (учебные)
         const tracks = [
-            { id: 1, title: 'Dragonborn', game: 'The Elder Scrolls V: Skyrim', file: 'audio/skyrim-dragonborn.mp3' },
-            { id: 2, title: 'One-Winged Angel', game: 'Final Fantasy VII', file: 'audio/ff7-one-winged-angel.mp3' },
-            { id: 3, title: 'Still Alive', game: 'Portal', file: 'audio/portal-still-alive.mp3' },
-            { id: 4, title: 'Gerudo Valley', game: 'The Legend of Zelda: Ocarina of Time', file: 'audio/zelda-gerudo.mp3' },
-            { id: 5, title: 'Main Theme', game: 'The Witcher 3: Wild Hunt', file: 'audio/witcher3-main.mp3' },
-            { id: 6, title: 'Ground Theme', game: 'Super Mario Bros.', file: 'audio/mario_ground_theme.mp3' },
-            { id: 7, title: 'Disturbed - Decadence', game: 'Need For Speed: Most Wanted 2005', file: 'audio/nfsmw_decadence.flac' },
-            { id: 8, title: 'Guns N Roses - Paradise City', game: 'Burnout Paradise 2008', file: 'audio/paradise_city.flac' },
-            { id: 9, title: 'Unshaken', game: 'Red Dead Redemption 2', file: 'audio/unshaken.mp3' },
-            { id: 10, title: 'Techno Syndrome', game: 'Mortal Kombat 1993', file: 'audio/techno_syndrome.mp3'}
+            { id: 1, title: 'Dragonborn', game: 'The Elder Scrolls V: Skyrim', file: 'audio/skyrim-dragonborn.mp3', likes: ['Илья','Даниил', 'Николай', 'Михаил'] },
+            { id: 2, title: 'One-Winged Angel', game: 'Final Fantasy VII', file: 'audio/ff7-one-winged-angel.mp3', likes: ['Илья', 'Николай'] },
+            { id: 3, title: 'Still Alive', game: 'Portal', file: 'audio/portal-still-alive.mp3' , likes: ['Даниил', 'Николай']},
+            { id: 4, title: 'Gerudo Valley', game: 'The Legend of Zelda: Ocarina of Time', file: 'audio/zelda-gerudo.mp3', likes: ['Даниил', 'Николай', 'Михаил'] },
+            { id: 5, title: 'Main Theme', game: 'The Witcher 3: Wild Hunt', file: 'audio/witcher3-main.mp3', likes: ['Илья','Даниил', 'Николай'] },
+            { id: 6, title: 'Ground Theme', game: 'Super Mario Bros.', file: 'audio/mario_ground_theme.mp3',  likes: ['Илья','Даниил', 'Николай', 'Михаил']},
+            { id: 7, title: 'Disturbed - Decadence', game: 'Need For Speed: Most Wanted 2005', file: 'audio/nfsmw_decadence.flac',  likes: ['Илья'] },
+            { id: 8, title: 'Guns N Roses - Paradise City', game: 'Burnout Paradise 2008', file: 'audio/paradise_city.flac',  likes: ['Илья'] },
+            { id: 9, title: 'Unshaken', game: 'Red Dead Redemption 2', file: 'audio/unshaken.mp3',  likes: ['Илья','Даниил'] },
+            { id: 10, title: 'Techno Syndrome', game: 'Mortal Kombat 1993', file: 'audio/techno_syndrome.mp3',  likes: ['Даниил', 'Михаил']},
+            { id: 11, title: 'Opening Suite', game: 'Halo Combat: Evolved', file: 'audio/halo.mp3',  likes: ['Николай', 'Михаил']}
         ];
 
         const audio = document.getElementById('audio-player');
@@ -36,30 +37,45 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let favorites = JSON.parse(localStorage.getItem('vgmFavorites')) || [];
 
-        function renderTracks() {
-            trackListContainer.innerHTML = '';
-            tracks.forEach((track, index) => {
-                const isFav = favorites.includes(track.id);
-                const trackEl = document.createElement('div');
-                trackEl.className = 'track-item';
-                trackEl.innerHTML = `
-                    <div class="track-info" data-id="${track.id}">
-                        <span class="track-number">${index + 1}</span>
-                        <div class="track-details">
-                            <span class="track-title">${track.title}</span>
-                            <span class="track-game">${track.game}</span>
-                        </div>
-                    </div>
-                    <div class="track-actions">
-                        <button class="play-btn" data-id="${track.id}">▶ Играть</button>
-                        <button class="fav-btn ${isFav ? 'active' : ''}" data-id="${track.id}">
-                            ${isFav ? '★' : '☆'}
-                        </button>
-                    </div>
-                `;
-                trackListContainer.appendChild(trackEl);
+  function renderTracks() {
+    trackListContainer.innerHTML = '';
+    tracks.forEach((track, index) => {
+        const isFav = favorites.includes(track.id);
+        const trackEl = document.createElement('div');
+        trackEl.className = 'track-item';
+
+        let likesHTML = '';
+        if (track.likes && track.likes.length > 0) {
+            likesHTML = '<div class="track-likes">';
+            track.likes.forEach(name => {
+                const avatarFile = name === 'Илья' ? 'avatar-ilya.jpg' :
+                                   name === 'Даниил' ? 'avatar-daniil.jpg' :
+                                   name === 'Михаил' ? 'avatar-mikhail.png' :
+                                   name === 'Николай' ? 'avatar-nikolai.jpg' : 'avatar-default.jpg';
+                likesHTML += `<img src="images/${avatarFile}" alt="${name}" title="${name}">`;
             });
+            likesHTML += '</div>';
         }
+
+        trackEl.innerHTML = `
+            <div class="track-info" data-id="${track.id}">
+                <span class="track-number">${index + 1}</span>
+                <div class="track-details">
+                    <span class="track-title">${track.title}</span>
+                    <span class="track-game">${track.game}</span>
+                    <span class="likes-label">Понравилось: </span>${likesHTML}
+                </div>
+            </div>
+            <div class="track-actions">
+                <button class="play-btn" data-id="${track.id}">▶ Слушать</button>
+                <button class="fav-btn ${isFav ? 'active' : ''}" data-id="${track.id}">
+                    ${isFav ? '★' : '☆'}
+                </button>
+            </div>
+        `;
+        trackListContainer.appendChild(trackEl);
+    });
+}
 
         function playTrack(id) {
             const track = tracks.find(t => t.id === id);
